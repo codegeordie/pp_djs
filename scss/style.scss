@@ -1,0 +1,681 @@
+@import "reset.scss";
+@import "mediaqueries.scss";
+
+$color-highlight: #FC06AE;
+
+
+
+
+body {
+	overflow-x: hidden;
+	font-family: "Source Sans Pro", sans-serif;
+	font-weight: 400;
+}
+
+section {
+	padding: 64px 0;
+	@include mq(less,750) {
+		padding: 64px 0 32px;
+	}
+	@include mq(less,400) {
+		padding: 64px 0 16px;
+	}
+}
+
+p {
+	font-size: 18px;
+}
+
+.button {
+	display: inline-block;
+	background-color: $color-highlight;
+	color: white;
+	font-size: 24px;
+	text-transform: uppercase;
+	border: 2px solid transparent;
+	transition: .3s;
+	padding: 5px 30px;
+	@include mq(more,800) {
+		&:hover {
+			background-color: rgba(255,255,255,.5);
+			color: $color-highlight;
+			border: 2px solid $color-highlight;
+		}
+	}
+	@include mq(less,600) {
+		padding: 8px 35px;
+	}
+	@include mq(less,400) {
+		font-size: 20px;
+	}
+}
+
+.container {
+	padding: 0 64px;
+	margin: 0 auto;
+	max-width: 1200px;
+	@include mq(less,1000) {
+		padding: 0 32px;
+	}
+	@include mq(less,500) {
+		padding: 0 16px;
+	}
+}
+
+.text-highlight {
+	color: $color-highlight;
+}
+
+.section-headline {
+	font-size: 56px;
+	font-weight: 700;
+	text-transform: uppercase;
+	margin-bottom: 64px;
+	border-bottom: 1px solid #333;
+	@include mq(less,900) {
+		border-bottom: 1px solid #333;
+	}
+	@include mq(less,400) {
+		text-align: center;
+		font-size: 50px;
+		margin-bottom: 32px;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+.navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+	background-color: rgba(18,18,18,.45);
+	border-bottom: 1px solid transparent;
+	transition: .4s;
+	@include mq(less,700) {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		border-bottom: none;
+		background-color: rgba(0,0,0,0.0);
+		pointer-events: none;
+	}
+}
+
+.fixed-nav {
+	@include mq(more,700) {
+		border-bottom: 1px solid rgba(255,255,255,.65);
+		background-color: rgba(18,18,18,.65);
+	}
+}
+
+.mobile-nav {
+	display: none;
+	@include mq(less,700) {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		background-color: rgba(18,18,18,.75);
+		pointer-events: auto;
+	}
+}
+
+.mobile-logo {
+	background: url("images/logo-mono.png") no-repeat;
+	background-size: contain;
+	align-self: center;
+	height: 50px;
+	width: 150px;
+	margin-left: 16px;
+	opacity: 0;
+	transition: 1s ease-in;
+}
+
+.logo-active {
+	opacity: 1;
+}
+
+.nav-toggle {
+	display: none;
+	@include mq(less,700) {
+		display: block;
+		position: relative;
+		cursor: pointer;
+		padding: 10px;
+	}
+	span {
+		background: #fff;
+		display: block;
+		position: relative;
+		top: 0;
+		width: 50px;
+		height: 6px;
+		margin-bottom: 6px;
+		transition: .3s;
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.nav-toggle.open span {
+	&:nth-child(2),
+	&:nth-child(3) {
+		width: 0;
+		opacity: 0;
+	}
+	&:nth-child(1) {
+		transform: rotate(-45deg);
+		top: 18px;
+	}
+	&:nth-child(4) {
+		transform: rotate(45deg);
+		top: -18px;
+	}
+}
+
+.main-navigation {
+	padding: 0 64px;
+	height: 50px;
+	display: flex;
+	justify-content: flex-end;
+	@include mq(less,700) {
+		flex-direction: column;
+		height: auto;
+		padding: 0 32px;
+		text-align: center;
+		background-color: rgba(18,18,18,.75);
+		transform: translateX(110%);
+		transition: .3s;
+		&.open {
+			transform: translateX(0);
+			pointer-events: auto;
+		}
+	}
+}
+
+.nav-link {
+	color: white;
+	text-transform: uppercase;
+	transition: .3s;
+
+	@include mq(more,700) {
+		padding: 0 20px;
+		font-size: 20px;
+		line-height: 50px;
+		border: 1px solid transparent;
+		&:hover {
+			border-left: 1px solid white;
+			border-right: 1px solid white;
+		}
+	}
+
+	@include mq(less,700) {
+		padding: 15px 25px;
+		font-size: 25px;
+		border-top: 1px solid white;
+		&:last-of-type {
+			margin-bottom: 30px;
+			border-bottom: 1px solid white;
+		}
+	}
+}
+
+.fist-link {
+	@include mq(more,700) {
+		background: url("images/fist.svg") no-repeat 50% 50%;
+		color: transparent;
+		&:hover {
+			color: white;
+			background: none;
+		}
+	}
+}
+
+
+
+
+
+
+
+.logo {
+	margin-top: 64px;
+	@include mq(less,500) {
+		width: 100%;
+		margin-top: 72px;
+	}
+}
+
+.hero {
+	position: relative;
+	height: 600px;
+	padding: 0 64px;
+	background: url("images/hero-image.png") 55% 60%;
+	background-size: cover;
+	background-color: #999;
+	@include mq(less,600) {
+		padding: 0 32px;
+		height: 500px;
+	}
+	@include mq(less,500) {
+		padding: 0 8px;
+		height: 100vh;
+	}
+}
+
+.hero-content {
+	position: relative;
+	text-align: center;
+}
+
+.hero-headline {
+	text-align: center;
+	line-height: 80px;
+	font-size: 68px;
+	color: white;
+	text-shadow: 1px 3px 5px rgba(0,0,0,.7);
+	font-family: "Catamaran", sans-serif;
+	@include mq(less,700) {
+		margin-top: 64px;
+	}
+	@include mq(less,600) {
+		font-size: 56px;
+		line-height: 64px;
+		margin-top: 32px;
+	}
+	@include mq(less,500) {
+		font-size: 44px;
+	}
+	@include mq(less,370) {
+		font-size: 38px;
+	}
+}
+
+.hero-button {
+	margin: 1rem auto 0;
+	@include mq(less,700) {
+		//display: none;
+	}
+	@include mq(less,500) {
+		margin-top: 32px;
+	}
+}
+
+.lead-headline {
+	font-size: 56px;
+	margin-bottom: 64px;
+	text-align: center;
+	@include mq(less,600) {
+		font-size: 48px;
+	}
+	@include mq(less,450) {
+		font-size: 36px;
+	}
+}
+
+.lead-paragraph {
+	max-width: 45rem;
+	text-align: center;
+	margin: 0 auto;
+	font-size: 20px;
+	line-height: 1.5;
+	@include mq(less,400) {
+		font-size: 18px;
+		line-height: 1.3;
+	}
+}
+
+
+
+
+
+
+
+
+
+#events {
+	background-color: #f9f9f9;
+}
+
+.events-multi {
+	display: flex;
+	@include mq(less,900) {
+		flex-direction: column;
+		.multi-container {
+			margin: 0 0 3rem 0;
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+		}
+		.events-image {
+			max-width: 500px;
+			height: 250px;
+			margin: 0 auto;
+		}
+		.multi-title {
+			font-size: 36px;
+		}
+		.multi-text {
+			max-width: 80%;
+		}
+	}
+	@include mq(less,650) {
+		.multi-text {
+			max-width: 90%;
+		}
+	}
+	@include mq(less,500) {
+		.events-image {
+			height: 180px;
+		}
+		.multi-title {
+			font-size: 30px;
+		}
+		.multi-text {
+			max-width: 100%;
+		}
+	}
+}
+
+.events-image {
+	position: relative;
+	width: 100%;
+	height: 230px;
+	max-height: 50vh;
+}
+
+#wedding-image {
+	background: url("images/events-wedding.jpg") 30% 30%;
+	background-size: cover;
+}
+
+#corp-image {
+	background: url("images/events-corp.jpg") 50% 50%;
+	background-size: cover;
+}
+
+#private-image {
+	background: url("images/events-private.jpg") 50% 30%;
+	background-size: cover;
+}
+
+.multi-container {
+	flex: 1;
+	margin-right: 32px;
+	position: relative;
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+.multi-title {
+	position: absolute;
+	bottom: 30px;
+	left: 0;
+	width: 100%;
+	color: white;
+	font-size: 26px;
+	text-align: center;
+	text-transform: uppercase;
+	text-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+.multi-text {
+	margin: 2rem auto;
+	//text-align: justify;
+	line-height: 1.4;
+}
+
+
+.event-hero {
+	height: 280px;
+	width: 100%;
+	background: url("images/hero-events.jpg") 50% 90%;
+	background-size: cover;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	@include mq(less,750) {
+		justify-content: center;
+		height: 200px;
+		.event-hero-content {
+			padding: 0;
+		}
+		.event-hero-text {
+			padding: 32px 16px 16px;
+		}
+	}
+}
+
+.event-hero-content {
+	max-width: 550px;
+	padding-right: 64px;
+	text-align: center;
+}
+
+.event-hero-text {
+	padding: 64px 16px 32px;
+	font-size: 32px;
+	color: white;
+	text-align: center;
+	text-transform: uppercase;
+	text-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+.event-hero-button {
+	margin: 0 auto;
+}
+
+
+.about-container {
+	display: flex;
+	@include mq(less,700) {
+		flex-direction: column;
+		.about-paragraph {
+			padding: 0 0 2rem 0;
+		}
+		.aside-image {
+			display: block;
+			margin: 0 auto;
+		}
+		.aside-text {
+			max-width: 300px;
+			margin: 1rem auto 0;
+			//text-align: justify;
+		}
+	}
+}
+
+.about-paragraph {
+	flex: 1;
+	padding-right: 3rem;
+	p {
+		line-height: 1.4;
+		padding-bottom: 1.5rem;
+	}
+}
+
+.about-aside {
+	flex: 0;
+}
+
+.aside-text {
+	margin-top: 1rem;
+	font-size: 16px;
+}
+
+
+
+
+#services {
+	background-color: #f9f9f9;
+}
+
+.services-multi {
+	display: flex;
+	.multi-title {
+		font-size: 36px;
+	}
+	@include mq(less,750) {
+		flex-direction: column;
+		.multi-container {
+			margin: 0 0 3rem 0;
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+		}
+		.services-image {
+			max-width: 600px;
+			height: 280px;
+			margin: 0 auto;
+		}
+	}
+	@include mq(less,500) {
+		.services-image {
+			height: 180px;
+		}
+	}
+}
+
+.services-image {
+	position: relative;
+	width: 100%;
+	height: 330px;
+	max-height: 50vh;
+}
+
+#audio-image {
+	background: url("images/audio.jpg") 50% 100%;
+	background-size: cover;
+}
+
+#lighting-image {
+	background: url("images/lighting.jpg") 50% 40%;
+	background-size: cover;
+}
+
+
+
+
+.flex-wrapper {
+	display: flex;
+	@include mq(less,750) {
+		flex-direction: column;
+	}
+}
+
+
+
+form {
+	flex: 6;
+}
+
+.form-field-wrapper {
+	margin-bottom: 2rem;
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+	label {
+		display: block;
+		text-transform: uppercase;
+	}
+	input, textarea {
+		width: 100%;
+		padding: .8rem;
+		font-size: 18px;
+		outline: none;
+		border: 1px solid #999;
+		transition: .2s;
+		&:focus {
+			border: 1px solid $color-highlight;
+		}
+	}
+	textarea {
+		height: 12rem;
+		resize: none;
+	}
+	@include mq(less,500) {
+		&:last-of-type {
+			text-align: center;
+		}
+	}
+}
+
+.contact-info {
+	flex: 4;
+	text-align: right;
+	padding: 32px;
+	padding-right: 0;
+	p {
+		text-align: center;
+		margin-bottom: 2rem;
+		font-size: 20px;
+		line-height: 1.4;
+		&:last-of-type {
+			margin-bottom: 0;
+			font-size: 24px;
+		}
+	}
+	@include mq(less,750) {
+		border-top: 1px solid #333;
+		margin-top: 3rem;
+		padding-right: 32px;
+	}
+}
+
+
+
+
+
+
+
+
+
+footer {
+	background: black;
+	padding: 16px 64px;
+	p {
+		color: white;
+		font-size: 14px;
+		text-align: center;
+	}
+	@include mq(less,600) {
+		padding: 16px 32px;
+		img {
+			display: block;
+			width: 70%;
+			max-width: 300px;
+			margin: 0 auto 12px;
+		}
+	}
+	@include mq(less,400) {
+		padding: 16px 8px;
+		p {
+			font-size: 12px;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
